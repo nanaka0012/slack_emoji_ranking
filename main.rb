@@ -40,7 +40,7 @@ def get_reactions(channel_list)
 
   channel_list.each do |name, id|
     uri = URI.parse("https://slack.com/api/conversations.history?inclusive=true&count=#{COUNT}&channel=#{id}")
-    
+
     http = Net::HTTP.new(uri.host, uri.port)
   
     http.use_ssl = true
@@ -71,7 +71,7 @@ def count_emoji(reactions)
     results[name.to_sym] += reaction["count"]
   end
 
-  puts "絵文字使用回数ランキング1〜10位"
+  puts "絵文字使用回数ランキング"
   result_data = []
   results.sort_by { |_, v| -v }.each do |result|
     result_data << result
